@@ -22,11 +22,13 @@ def exec_command(command):
     print subprocess.check_output(command, shell=True), '\n'
 
 
-def get_html_name(md_file):
+def get_html_name(md_file, tmp_dir='/tmp'):
     '''
         from markdown file name generate html file name.
     '''
-    return md_file.split('.')[0] + '.html'
+    html_file = md_file.split('.')[0]
+    return '{tmp_dir}/{html_file}.html'.format(
+        tmp_dir=tmp_dir, html_file=html_file)
 
 
 def markdown2(md_file):
