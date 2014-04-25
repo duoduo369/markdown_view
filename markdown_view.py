@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""Naval Fate.
+"""Browser markdown in local browser.
 
 Usage:
   markdown_view.py <markdown_file>
@@ -14,25 +14,40 @@ Options:
 
 import subprocess
 
-def trans_command(command):
-    return command.split()
 
 def exec_command(command):
+    '''
+        exec command and print result.
+    '''
     print subprocess.check_output(command, shell=True), '\n'
 
+
 def get_html_name(md_file):
+    '''
+        from markdown file name generate html file name.
+    '''
     return md_file.split('.')[0] + '.html'
 
+
 def markdown2(md_file):
+    '''
+        use markdown file generate html file.
+    '''
     html_file = get_html_name(md_file)
     command = 'markdown2 {md_file} > {html_file}'.format(
         md_file=md_file, html_file=html_file)
     exec_command(command)
 
+
 def browser_markdown(md_file):
+    '''
+        view html file in webbrowser.
+    '''
     html_file = get_html_name(md_file)
-    command = 'python -m webbrowser -t {html_file} &'.format(html_file=html_file)
+    command = 'python -m webbrowser -t {html_file} &'.format(
+        html_file=html_file)
     exec_command(command)
+
 
 def run(md_file):
     markdown2(md_file)
